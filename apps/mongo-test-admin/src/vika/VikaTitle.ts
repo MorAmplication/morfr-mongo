@@ -1,7 +1,7 @@
 import { Vika as TVika } from "../api/vika/Vika";
 
-export const VIKA_TITLE_FIELD = "id";
+export const VIKA_TITLE_FIELD = "mor";
 
 export const VikaTitle = (record: TVika): string => {
-  return record.id || String(record.id);
+  return record.mor || String(record.id);
 };

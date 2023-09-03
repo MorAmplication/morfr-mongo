@@ -62,6 +62,17 @@ class VikaOrderByInput {
     nullable: true,
   })
   userId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  mor?: SortOrder;
 }
 
 export { VikaOrderByInput as VikaOrderByInput };

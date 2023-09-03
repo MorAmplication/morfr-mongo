@@ -49,6 +49,17 @@ class Vika {
   @Type(() => User)
   @IsOptional()
   user?: User | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  mor!: string | null;
 }
 
 export { Vika as Vika };
