@@ -13,8 +13,9 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { VikaListRelationFilter } from "../../vika/base/VikaListRelationFilter";
 
 @InputType()
 class UserWhereInput {
@@ -61,6 +62,18 @@ class UserWhereInput {
     nullable: true,
   })
   username?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => VikaListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => VikaListRelationFilter)
+  @IsOptional()
+  @Field(() => VikaListRelationFilter, {
+    nullable: true,
+  })
+  vikas?: VikaListRelationFilter;
 }
 
 export { UserWhereInput as UserWhereInput };

@@ -27,6 +27,9 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { VikaFindManyArgs } from "../../vika/base/VikaFindManyArgs";
+import { Vika } from "../../vika/base/Vika";
+import { VikaWhereUniqueInput } from "../../vika/base/VikaWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -199,5 +202,106 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/vikas")
+  @ApiNestedQuery(VikaFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Vika",
+    action: "read",
+    possession: "any",
+  })
+  async findManyVikas(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<Vika[]> {
+    const query = plainToClass(VikaFindManyArgs, request.query);
+    const results = await this.service.findVikas(params.id, {
+      ...query,
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/vikas")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectVikas(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: VikaWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      vikas: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/vikas")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateVikas(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: VikaWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      vikas: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/vikas")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectVikas(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: VikaWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      vikas: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

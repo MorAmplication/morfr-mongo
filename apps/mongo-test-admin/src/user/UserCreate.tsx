@@ -7,8 +7,10 @@ import {
   TextInput,
   PasswordInput,
   SelectArrayInput,
+  ReferenceArrayInput,
 } from "react-admin";
 
+import { VikaTitle } from "../vika/VikaTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserCreate = (props: CreateProps): React.ReactElement => {
@@ -25,6 +27,14 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
+        <ReferenceArrayInput
+          source="vikas"
+          reference="Vika"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={VikaTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );
