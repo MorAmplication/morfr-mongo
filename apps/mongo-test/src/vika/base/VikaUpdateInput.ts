@@ -39,6 +39,17 @@ class VikaUpdateInput {
     nullable: true,
   })
   mor?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  tick?: string | null;
 }
 
 export { VikaUpdateInput as VikaUpdateInput };

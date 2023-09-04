@@ -6,4 +6,5 @@ export type VikaWhereInput = {
   id?: StringFilter;
   user?: UserWhereUniqueInput;
   mor?: StringNullableFilter;
+  tick?: StringNullableFilter;
 };

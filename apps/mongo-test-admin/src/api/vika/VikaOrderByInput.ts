@@ -6,4 +6,5 @@ export type VikaOrderByInput = {
   updatedAt?: SortOrder;
   userId?: SortOrder;
   mor?: SortOrder;
+  tick?: SortOrder;
 };

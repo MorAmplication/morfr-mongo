@@ -231,6 +231,7 @@ export class UserControllerBase {
         },
 
         mor: true,
+        tick: true,
       },
     });
     if (results === null) {

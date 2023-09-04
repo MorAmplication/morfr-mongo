@@ -69,6 +69,7 @@ export class VikaControllerBase {
         },
 
         mor: true,
+        tick: true,
       },
     });
   }
@@ -101,6 +102,7 @@ export class VikaControllerBase {
         },
 
         mor: true,
+        tick: true,
       },
     });
   }
@@ -134,6 +136,7 @@ export class VikaControllerBase {
         },
 
         mor: true,
+        tick: true,
       },
     });
     if (result === null) {
@@ -184,6 +187,7 @@ export class VikaControllerBase {
           },
 
           mor: true,
+          tick: true,
         },
       });
     } catch (error) {
@@ -225,6 +229,7 @@ export class VikaControllerBase {
           },
 
           mor: true,
+          tick: true,
         },
       });
     } catch (error) {
