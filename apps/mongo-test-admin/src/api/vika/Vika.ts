@@ -5,4 +5,6 @@ export type Vika = {
   createdAt: Date;
   updatedAt: Date;
   user?: User | null;
+  mor: string | null;
+  tick: string | null;
 };

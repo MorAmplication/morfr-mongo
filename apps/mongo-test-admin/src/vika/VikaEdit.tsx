@@ -5,6 +5,7 @@ import {
   EditProps,
   ReferenceInput,
   SelectInput,
+  TextInput,
 } from "react-admin";
 import { UserTitle } from "../user/UserTitle";
 
@@ -15,6 +16,8 @@ export const VikaEdit = (props: EditProps): React.ReactElement => {
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
+        <TextInput label="mor" source="mor" />
+        <TextInput label="tick" source="tick" />
       </SimpleForm>
     </Edit>
   );

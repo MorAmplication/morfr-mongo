@@ -5,4 +5,6 @@ export type VikaOrderByInput = {
   createdAt?: SortOrder;
   updatedAt?: SortOrder;
   userId?: SortOrder;
+  mor?: SortOrder;
+  tick?: SortOrder;
 };

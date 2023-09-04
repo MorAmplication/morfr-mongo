@@ -229,6 +229,9 @@ export class UserControllerBase {
             id: true,
           },
         },
+
+        mor: true,
+        tick: true,
       },
     });
     if (results === null) {
